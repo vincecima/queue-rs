@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  watch:server:
+    dir: server
+    cmds:
+      - cargo watch -x build -x run
+  watch:client:
+    dir: client
+    cmds:
+      - ./node_modules/.bin/rspack serve
+  build:server:
+    dir: server
+    cmds:
+      - cargo build --release
+  build:client:
+    dir: client
+    env:
+      NODE_ENV: production
+    cmds:
+      - ./node_modules/.bin/rspack build
